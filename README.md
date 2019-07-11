@@ -61,6 +61,15 @@ docker run -d -p 8080:3000 -v "$(pwd):/var/www" -w "/var/www" node npm start
 
 # Fazer build de dockerfile
 docker build -f meuarquivo.dockerfile -t meuNome/conteudoConteiner caminho-do-arquivo
+
+# Listar redes
+docker network ls
+
+# Criar uma nova rede
+docker network create --driver bridge minha-rede
+
+# Fazer um container ubuntu em uma rede
+docker run -it --name meu-container-de-ubuntu --network minha-rede ubuntu
 ```
 
 ## Flags
@@ -72,7 +81,7 @@ docker build -f meuarquivo.dockerfile -t meuNome/conteudoConteiner caminho-do-ar
 | -t | utilizado para determinar o tempo |
 | -P | atribui uma porta aleatória do container com o SO |
 | -p | escolher a porta do container da forma porta-do-pc:porta-do-container |
-| `--name`  | dar um nome ao container criado |
+| --name  | dar um nome ao container criado |
 | -e | setar variável de ambiente do tipo => VARIAVEL="valor da variavel"|
 | -q | listar apenas os ids |
 | -v | criar um volume |
